@@ -4,17 +4,18 @@
 \alias{sl_stderr}
 \title{Calculate the SE of individual SL learners}
 \usage{
-sl_stderr(sl, Y, obsWeights = rep(1, length(Y)))
+sl_stderr(sl, y, obsWeights = rep(1, length(y)))
 }
 \arguments{
 \item{sl}{SuperLearner result object}
 
-\item{Y}{Outcome vector}
+\item{y}{Outcome vector}
 
 \item{obsWeights}{Observation weights}
 }
 \value{
-Vector of the standard errors of the risk estimate for each learner in the SL object.
+Vector of the standard errors of the risk estimate for each learner
+  in the SL object.
 }
 \description{
 This will help understand risk estimates of learners in SL, similar to CV.SL.
@@ -33,7 +34,7 @@ sl = SuperLearner(Boston$medv, subset(Boston, select = -medv),
 
 sl
 
-sl_stderr(sl, Y = Boston$medv)
+sl_stderr(sl, y = Boston$medv)
 
 }
 \references{
@@ -50,5 +51,6 @@ Statistical Applications of Genetics and Molecular Biology, 6, article 25.
 http://www.degruyter.com/view/j/sagmb.2007.6.issue-1/sagmb.2007.6.1.1309/sagmb.2007.6.1.1309.xml
 }
 \seealso{
-\code{\link{plot.SuperLearner}} \code{\link[SuperLearner]{summary.CV.SuperLearner}}
+\code{\link{plot.SuperLearner}}
+   \code{\link[SuperLearner]{summary.CV.SuperLearner}}
 }

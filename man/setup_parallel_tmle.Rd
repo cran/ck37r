@@ -4,8 +4,12 @@
 \alias{setup_parallel_tmle}
 \title{Setup TMLE to run in parallel}
 \usage{
-setup_parallel_tmle(parallel = "multicore", max_cores = NULL,
-  allow_multinode = T, env = .GlobalEnv)
+setup_parallel_tmle(
+  parallel = "multicore",
+  max_cores = NULL,
+  allow_multinode = TRUE,
+  env = .GlobalEnv
+)
 }
 \arguments{
 \item{parallel}{"multicore", "doParallel", or "doSNOW"}
@@ -16,7 +20,8 @@ substantial amount of memory.}
 
 \item{allow_multinode}{If T, will create a multinode cluster if it finds
 multiple machines listed in the "SLURM_NODELIST" environmental variable.
-If F, it will only use the current node even if multiple nodes are detected.}
+If F, it will only use the current node even if multiple nodes are
+detected.}
 
 \item{env}{Environment in which to save the functions, defaulting to the
 global environment. Set to NULL to disable.}

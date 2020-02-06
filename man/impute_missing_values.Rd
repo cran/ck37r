@@ -4,8 +4,20 @@
 \alias{impute_missing_values}
 \title{Impute missing values in a dataframe and add missingness indicators.}
 \usage{
-impute_missing_values(data, type = "standard", add_indicators = T,
-  prefix = "miss_", skip_vars = c(), verbose = F)
+impute_missing_values(
+  data,
+  type = "standard",
+  add_indicators = TRUE,
+  prefix = "miss_",
+  skip_vars = NULL,
+  all_vars = FALSE,
+  remove_constant = TRUE,
+  remove_collinear = TRUE,
+  values = NULL,
+  h2o_glrm = NULL,
+  glrm_k = 10L,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{Dataframe or matrix.}
@@ -20,6 +32,20 @@ indicator.}
 
 \item{skip_vars}{List of variable names to exclude from the imputation.}
 
+\item{all_vars}{Calculate imputation value for all variables, in cases where
+the imputation info may be used for future datasets.}
+
+\item{remove_constant}{Remove constant missingness indicators, if applicable.}
+
+\item{remove_collinear}{Remove collinear missingness indicators, if
+applicable.}
+
+\item{values}{Named list with imputation value to use from another dataset.}
+
+\item{h2o_glrm}{Optional h2o glrm model for imputing on new data (e.g. test set)}
+
+\item{glrm_k}{Number of principal components to estimate (up to the # of columns in the data).}
+
 \item{verbose}{If True display extra information during execution.}
 }
 \value{
@@ -27,7 +53,8 @@ List with the following elements:
 \itemize{
 \item $data - imputed dataset.
 \item $impute_info - if knn, caret preprocess element for imputing test data.
-\item $impute_values - if standard, list of imputation values for each variable.
+\item $impute_values - if standard, list of imputation values for each
+  variable.
 }
 }
 \description{
@@ -53,7 +80,8 @@ colSums(is.na(result$data))
 #############
 # K-nearest neighbors imputation
 
-result2 = impute_missing_values(PimaIndiansDiabetes2, type = "knn", skip_vars = "diabetes")
+result2 = impute_missing_values(PimaIndiansDiabetes2, type = "knn",
+                                skip_vars = "diabetes")
 
 # Confirm we have no missing data.
 colSums(is.na(result2$data))

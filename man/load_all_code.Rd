@@ -4,8 +4,14 @@
 \alias{load_all_code}
 \title{Load all R files in a library directory.}
 \usage{
-load_all_code(lib_dir = "lib", exclude_files = c("function_library.R"),
-  file_pattern = "\\\\.R$", recursive = T, verbose = T)
+load_all_code(
+  lib_dir = "lib",
+  exclude_files = c("function_library.R"),
+  file_pattern = "\\\\.R$",
+  recursive = T,
+  verbose = T,
+  envir = .GlobalEnv
+)
 }
 \arguments{
 \item{lib_dir}{Directory contains the source code files.}
@@ -15,9 +21,12 @@ default because we presume that is the main R library file.}
 
 \item{file_pattern}{Regular expression for files to load, defaults to *.R}
 
-\item{recursive}{If TRUE also recurse into subdirectories.}
+\item{recursive}{If TRUE also recurse into subdirectories. Defaults to TRUE.}
 
 \item{verbose}{If TRUE display additional output during execution.}
+
+\item{envir}{Environment in which to run the code; .GlobalEnv by default,
+but baseenv() is a good option to force package references.}
 }
 \description{
 Load all R files in a library directory.
@@ -29,4 +38,7 @@ library(ck37r)
 # Here R is a subdirectory with a bunch of .R files to load.
 load_all_code("R")
 
+}
+\seealso{
+sys.source, source
 }

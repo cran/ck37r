@@ -4,8 +4,14 @@
 \alias{missingness_indicators}
 \title{Return matrix of missingness indicators for a dataframe or matrix.}
 \usage{
-missingness_indicators(data, prefix = "miss_", remove_constant = T,
-  remove_collinear = T, skip_vars = c(), verbose = F)
+missingness_indicators(
+  data,
+  prefix = "miss_",
+  remove_constant = TRUE,
+  remove_collinear = TRUE,
+  skip_vars = c(),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{Dataframe or matrix to analyze for missingness.}
@@ -14,7 +20,8 @@ missingness_indicators(data, prefix = "miss_", remove_constant = T,
 
 \item{remove_constant}{Remove any indicators that are all 0 or all 1.}
 
-\item{remove_collinear}{Remove any indicators that are collinear with each other.}
+\item{remove_collinear}{Remove any indicators that are collinear with each
+other.}
 
 \item{skip_vars}{Vector of variable names to skip.}
 
@@ -36,7 +43,8 @@ data(PimaIndiansDiabetes2, package = "mlbench")
 colSums(is.na(PimaIndiansDiabetes2))
 
 # Generate missingness indicators; skip outcome variable.
-indicators = missingness_indicators(PimaIndiansDiabetes2, skip_vars = "diabetes")
+indicators = missingness_indicators(PimaIndiansDiabetes2,
+                                    skip_vars = "diabetes")
 
 # Check missingness.
 colSums(indicators)

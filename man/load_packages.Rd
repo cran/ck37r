@@ -4,8 +4,7 @@
 \alias{load_packages}
 \title{Load a list of packages.}
 \usage{
-load_packages(pkgs = NULL, auto_install = F, update = F, verbose = F,
-  ...)
+load_packages(pkgs = NULL, auto_install = F, update = F, verbose = F, ...)
 }
 \arguments{
 \item{pkgs}{Character vector of packages to load.}
@@ -24,6 +23,7 @@ Load packages and install them from CRAN if they aren't already available.
 \examples{
 
 # Load these 4 packages and install them if necessary.
-load_packages(c("MASS", "SuperLearner", "tmle", "doParallel"), auto_install = TRUE)
+load_packages(c("MASS", "SuperLearner", "tmle", "doParallel"),
+              auto_install = TRUE)
 
 }

@@ -1,10 +1,11 @@
 #' Import all CSV files in a given directory and save them to a list.
 #' @param directory Directory to search for files.
 #' @param file_pattern File pattern to match.
-#' @param recursive Whether or not recurse into subdirectories, default T.
+#' @param recursive Whether or not recurse into subdirectories, default TRUE.
 #' @param verbose If True display additional information during execution.
 #'
-#' @return List with files; filenames are the names of the list elements (with extension removed).
+#' @return List with files; filenames are the names of the list elements (with
+#'   extension removed).
 #'
 #' @examples
 #'
@@ -16,12 +17,13 @@
 #'
 #' @export
 import_csvs = function(directory = "", file_pattern = "\\.csv$",
-                       recursive = T, verbose = T) {
+                       recursive = TRUE, verbose = TRUE) {
 
-  file_names = list.files(path=directory, file_pattern, full.names = F,
+  file_names = list.files(path = directory, file_pattern, full.names = FALSE,
                           recursive = recursive)
   if (verbose) {
-    cat(paste0("Found ", length(file_names), " text files in \"", directory, "\" to import.\n"))
+    cat(paste0("Found ", length(file_names), " text files in \"", directory,
+               "\" to import.\n"))
   }
 
   if (length(file_names) == 0) {
@@ -36,9 +38,9 @@ import_csvs = function(directory = "", file_pattern = "\\.csv$",
     # Remove the file extension from the file.
     list_name = stringr::str_to_lower(gsub(file_pattern, "", file))
     # Import the csv file.
-    data = reader::reader(file, directory, header=T, def = ",")
+    data = reader::reader(file, directory, header = TRUE, def = ",")
     # Lowercase the column names.
-    colnames(data) = sapply(colnames(data), FUN=stringr::str_to_lower)
+    colnames(data) = sapply(colnames(data), FUN = stringr::str_to_lower)
     files[[list_name]] = data
   }
 

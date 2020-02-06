@@ -74,4 +74,3 @@ for (name in names(obj)) {
   try(print(pryr::object_size(elm)))
   try(print(utils::object.size(elm), units = "MB"))
 }
-

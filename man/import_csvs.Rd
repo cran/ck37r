@@ -4,20 +4,25 @@
 \alias{import_csvs}
 \title{Import all CSV files in a given directory and save them to a list.}
 \usage{
-import_csvs(directory = "", file_pattern = "\\\\.csv$", recursive = T,
-  verbose = T)
+import_csvs(
+  directory = "",
+  file_pattern = "\\\\.csv$",
+  recursive = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{directory}{Directory to search for files.}
 
 \item{file_pattern}{File pattern to match.}
 
-\item{recursive}{Whether or not recurse into subdirectories, default T.}
+\item{recursive}{Whether or not recurse into subdirectories, default TRUE.}
 
 \item{verbose}{If True display additional information during execution.}
 }
 \value{
-List with files; filenames are the names of the list elements (with extension removed).
+List with files; filenames are the names of the list elements (with
+  extension removed).
 }
 \description{
 Import all CSV files in a given directory and save them to a list.

@@ -20,7 +20,6 @@ gen_superlearner = function(parallel = "multicore",
       SuperLearner::CV.SuperLearner(...,
                                     V = outer_cv_folds,
                                     innerCvControl = list(cvControl))
-      #SuperLearner::CV.SuperLearner(...)
     }
   } else if (parallel == "multicore") {
     if (verbose) {
@@ -35,14 +34,13 @@ gen_superlearner = function(parallel = "multicore",
                                     V = outer_cv_folds,
                                     innerCvControl = list(cvControl),
                                     parallel = parallel)
-      #SuperLearner::CV.SuperLearner(..., parallel = parallel)
     }
   } else if (parallel %in% c("doSNOW", "snow")) {
     if (verbose) {
       cat("Running SL via snow\n")
     }
     sl_fn = function(...) {
-      SuperLearner::snowSuperLearner(cluster, ...)
+      SuperLearner::snowSuperLearner(cluster = cluster, ...)
     }
     cv_sl_fn = function(cvControl = list(), ...) {
       SuperLearner::CV.SuperLearner(...,

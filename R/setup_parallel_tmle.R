@@ -10,7 +10,8 @@
 #'   substantial amount of memory.
 #' @param allow_multinode If T, will create a multinode cluster if it finds
 #'   multiple machines listed in the "SLURM_NODELIST" environmental variable.
-#'   If F, it will only use the current node even if multiple nodes are detected.
+#'   If F, it will only use the current node even if multiple nodes are
+#'   detected.
 #' @param env Environment in which to save the functions, defaulting to the
 #'   global environment. Set to NULL to disable.
 #' @importFrom parallel clusterEvalQ
@@ -18,7 +19,7 @@
 #' @seealso parallelize, tmle_parallel, gen_superlearner
 # TODO: add examples to the code, document return object.
 setup_parallel_tmle = function(parallel = "multicore", max_cores = NULL,
-                               allow_multinode = T, env = .GlobalEnv) {
+                               allow_multinode = TRUE, env = .GlobalEnv) {
 
   # Start cluster.
   cl = ck37r::parallelize(type = parallel, max_cores = max_cores,
